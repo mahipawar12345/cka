@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sharedvolume
+spec:
+  containers:
+  - name: ubuntu1
+    image: ubuntu
+    command:
+      - sleep
+      - "3600"
+    volumeMounts:
+      - mountPath: /ubuntu1
+        name: test
+  - name: ubuntu2
+    image: ubuntu
+    command:
+      - sleep
+      - "3600"
+    volumeMounts:
+      - mountPath: /ubuntu2
+        name: test
+  volumes:
+    - name: test
+      emptyDir: {}
